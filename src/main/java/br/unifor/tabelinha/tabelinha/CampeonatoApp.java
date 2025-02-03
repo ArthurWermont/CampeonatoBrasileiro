@@ -13,9 +13,9 @@ import java.awt.*;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileWriter;
+//import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
+//import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -130,8 +130,8 @@ public class CampeonatoApp extends JFrame {
                     labelRodadaAtual.setText("Rodada: " + (rodadaAtual + 1));
 
                     if (rodadaAtual == 37) {  // Rodada 38 (índice começa em 0, então 37 é a rodada 38)
-                        salvarTabelaCSV();  // Salva a tabela final
-                        salvarRodadasCSV();  // Salva os resultados de todas as rodadas
+                        //salvarTabelaCSV();  // Salva a tabela final
+                        //salvarRodadasCSV();  // Salva os resultados de todas as rodadas
                         salvarRodadasETabelaExcel();
                     }
                     // Salva os resultados da rodada no arquivo CSV
@@ -180,86 +180,72 @@ public class CampeonatoApp extends JFrame {
         atualizarTabela();
     }
 
-    public void salvarRodadasCSV() {
-            String nomeArquivo = "campeonatoBrasileiro.csv";
-            try (FileWriter file = new FileWriter(nomeArquivo, true); // 'true' para adicionar ao arquivo existente
-                    PrintWriter writer = new PrintWriter(file)) {
+    // public void salvarRodadasCSV() {
+    //         String nomeArquivo = "campeonatoBrasileiro.csv";
+    //         try (FileWriter file = new FileWriter(nomeArquivo, true); // 'true' para adicionar ao arquivo existente
+    //                 PrintWriter writer = new PrintWriter(file)) {
 
-                // Itera por todas as rodadas
-                for (int i = 0; i < rodadas.size(); i++) {
-                    ArrayList<Jogo> jogosDaRodada = rodadas.get(i);
+    //             // Itera por todas as rodadas
+    //             for (int i = 0; i < rodadas.size(); i++) {
+    //                 ArrayList<Jogo> jogosDaRodada = rodadas.get(i);
 
-                    // Escrever título para a rodada (Rodada 1, Rodada 2, ...)
-                    writer.println("Rodada " + (i + 1));  // "Rodada 1", "Rodada 2", etc.
-                    writer.println("Time Casa,Placar,Time Visitante"); // Cabeçalho para os jogos da rodada
+    //                 // Escrever título para a rodada (Rodada 1, Rodada 2, ...)
+    //                 writer.println("Rodada " + (i + 1));  // "Rodada 1", "Rodada 2", etc.
+    //                 writer.println("Time Casa,Placar,Time Visitante"); // Cabeçalho para os jogos da rodada
 
-                    // Adicionar os jogos da rodada
-                    for (Jogo jogo : jogosDaRodada) {
-                        String linha = jogo.getTime1().getNome() + "," +
-                                jogo.getGolsTime1() + " - " + jogo.getGolsTime2() + "," +
-                                jogo.getTime2().getNome();
-                        writer.println(linha);
-                    }
+    //                 // Adicionar os jogos da rodada
+    //                 for (Jogo jogo : jogosDaRodada) {
+    //                     String linha = jogo.getTime1().getNome() + "," +
+    //                             jogo.getGolsTime1() + " - " + jogo.getGolsTime2() + "," +
+    //                             jogo.getTime2().getNome();
+    //                     writer.println(linha);
+    //                 }
 
-                    writer.println(); // Linha em branco para separar as rodadas
-                }
+    //                 writer.println(); // Linha em branco para separar as rodadas
+    //             }
 
-            } catch (IOException e) {
-                //JOptionPane.showMessageDialog(null, "Erro ao salvar as rodadas no arquivo CSV: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-    }
+    //         } catch (IOException e) {
+    //             //JOptionPane.showMessageDialog(null, "Erro ao salvar as rodadas no arquivo CSV: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+    //         }
+    // }
 
-    public void salvarTabelaCSV() {
+    // public void salvarTabelaCSV() {
 
-            // Nome do arquivo CSV
-            String nomeArquivo = "campeonatoBrasileiro.csv";
+    //         // Nome do arquivo CSV
+    //         String nomeArquivo = "campeonatoBrasileiro.csv";
 
-            try (PrintWriter writer = new PrintWriter(new FileWriter(nomeArquivo))) {
-                // Cabeçalho do CSV
-                writer.println("Posição,Time,Pontos,Gols Feitos,Gols Sofridos,Saldo de Gols");
+    //         try (PrintWriter writer = new PrintWriter(new FileWriter(nomeArquivo))) {
+    //             // Cabeçalho do CSV
+    //             writer.println("Posição,Time,Pontos,Gols Feitos,Gols Sofridos,Saldo de Gols");
 
-                // Obter lista de times ordenados
-                ArrayList<TimePrincipal> times = tabelaCampeonato.getTimes();
-                Collections.sort(times, TimePrincipal.compararPorDesempate);
+    //             // Obter lista de times ordenados
+    //             ArrayList<TimePrincipal> times = tabelaCampeonato.getTimes();
+    //             Collections.sort(times, TimePrincipal.compararPorDesempate);
 
-                // Adicionar dados dos times no CSV
-                for (int i = 0; i < times.size(); i++) {
-                    TimePrincipal time = times.get(i);
+    //             // Adicionar dados dos times no CSV
+    //             for (int i = 0; i < times.size(); i++) {
+    //                 TimePrincipal time = times.get(i);
 
-                    // Formatar a linha do CSV
-                    String linha = i + 1 + "," +
-                            time.getNome() + "," +
-                            time.getPontos() + "," +
-                            time.getGolsFeitos() + "," +
-                            time.getGolsSofridos() + "," +
-                            time.getSaldoGols();
+    //                 // Formatar a linha do CSV
+    //                 String linha = i + 1 + "," +
+    //                         time.getNome() + "," +
+    //                         time.getPontos() + "," +
+    //                         time.getGolsFeitos() + "," +
+    //                         time.getGolsSofridos() + "," +
+    //                         time.getSaldoGols();
 
-                    // Escrever a linha no arquivo
-                    writer.println(linha);
-                    writer.println();
-                }
+    //                 // Escrever a linha no arquivo
+    //                 writer.println(linha);
+    //                 writer.println();
+    //             }
 
-                // Mensagem de sucesso
-                JOptionPane.showMessageDialog(null, "Campeonato salvo com sucesso em " + nomeArquivo, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-            } catch (IOException e) {
-                // Caso haja erro ao salvar o arquivo
-                JOptionPane.showMessageDialog(null, "Erro ao salvar o arquivo CSV: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-    }
-
-    void executarRodadaAtual() {
-        /* if (rodadas.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "As rodadas ainda não foram geradas.","Alerta!",
-                    JOptionPane.WARNING_MESSAGE);
-        }*/
-
-        ArrayList<Jogo> jogosDaRodada = rodadas.get(rodadaAtual);
-        for (Jogo jogo : jogosDaRodada) {
-            jogo.jogar();
-            jogo.getTime1().atualizarClassificacao(jogo.getGolsTime1(), jogo.getGolsTime2());
-            jogo.getTime2().atualizarClassificacao(jogo.getGolsTime2(), jogo.getGolsTime1());
-        }
-    }
+    //             // Mensagem de sucesso
+    //             JOptionPane.showMessageDialog(null, "Campeonato salvo com sucesso em " + nomeArquivo, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+    //         } catch (IOException e) {
+    //             // Caso haja erro ao salvar o arquivo
+    //             JOptionPane.showMessageDialog(null, "Erro ao salvar o arquivo CSV: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+    //         }
+    // }
 
     public void salvarRodadasETabelaExcel() {
         // Define o nome do arquivo Excel
@@ -343,6 +329,20 @@ public class CampeonatoApp extends JFrame {
         } catch (IOException e) {
             // Se ocorrer um erro durante o processo, exibe uma mensagem de erro
             JOptionPane.showMessageDialog(null, "Erro ao salvar o arquivo Excel: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    void executarRodadaAtual() {
+        /* if (rodadas.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "As rodadas ainda não foram geradas.","Alerta!",
+                    JOptionPane.WARNING_MESSAGE);
+        }*/
+
+        ArrayList<Jogo> jogosDaRodada = rodadas.get(rodadaAtual);
+        for (Jogo jogo : jogosDaRodada) {
+            jogo.jogar();
+            jogo.getTime1().atualizarClassificacao(jogo.getGolsTime1(), jogo.getGolsTime2());
+            jogo.getTime2().atualizarClassificacao(jogo.getGolsTime2(), jogo.getGolsTime1());
         }
     }
     
